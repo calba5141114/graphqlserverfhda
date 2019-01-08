@@ -11,6 +11,7 @@ const {
     GraphQLSchema,
     GraphQLID,
     GraphQLList,
+    GraphQLInt
 } = graphql;
 
 
@@ -89,6 +90,28 @@ const RootQuery = new GraphQLObjectType({
             type: new GraphQLList(FoothillStoryType),
             resolve(parent, args) {
                 return DeAnzaStory.find({});
+            }
+        },
+        deanzastorieslimit:{    
+            type: new GraphQLList(DeAnzaStoryType),
+            args: {
+                first:{
+                    type: GraphQLInt
+                }
+            },
+            resolve(parent, args){
+                return DeAnzaStory.find({}).limit(args.first)
+            }
+        },
+        foothillstorieslimit: {
+            type: new GraphQLList(FoothillStoryType),
+            args: {
+                first: {
+                    type: GraphQLInt
+                }
+            },
+            resolve(parent, args) {
+                return FoothillStory.find({}).limit(args.first)
             }
         }
     }
