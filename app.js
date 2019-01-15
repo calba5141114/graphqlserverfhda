@@ -5,6 +5,7 @@ const schema = require('./schema/schema.js');
 const configuration = require('./config');
 const mongoose = require('mongoose');
 const cors = require('cors');
+
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -24,6 +25,6 @@ app.use('/graphql', graphqlHTTP({
 }));
 
 
-app.listen(configuration.port, () => {
+app.listen(process.env.APP_PORT, () => {
     console.log("Running on 3000 🚀");
 });
