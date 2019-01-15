@@ -5,6 +5,8 @@ const schema = require('./schema/schema.js');
 const configuration = require('./config');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const dotenv = require('dotenv');
+dotenv.config();
 
 // connect to DB
 mongoose.connect(configuration.mongoURI, {
