@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FHDA News API</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" integrity="sha256-ECB9bbROLGm8wOoEbHcHRxlHgzGqYpDtNTgDTyDz0wg="
+        crossorigin="anonymous" />
+</head>
+
+<body>
+
+
+
+
+    <div class="container">
+
+        <div>
+            <h2>FHDA News API </h2>
+            <span>
+                <p>Version 1.3α</p>
+            </span>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="graphql">
+            <h5 class="link">GraphQL API
+                <a target="__blank" href="/graphql">link</a>
+            </h5>
+
+            <p>
+                <strong>Querys</strong>
+            </p>
+
+            <p>Pull a number of stories</p>
+
+
+            <!-- HTML generated using hilite.me -->
+            <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                <pre style="margin: 0; line-height: 125%"><span style="color: #960050; background-color: #1e0010">query</span> <span style="color: #960050; background-color: #1e0010">get</span><span style="color: #ae81ff">30</span><span style="color: #960050; background-color: #1e0010">Stories</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #960050; background-color: #1e0010">deanzastorieslimit(first:</span> <span style="color: #960050; background-color: #1e0010">30)</span> <span style="color: #960050; background-color: #1e0010">{</span>
+    <span style="color: #960050; background-color: #1e0010">header</span>
+    <span style="color: #960050; background-color: #1e0010">content</span>
+    <span style="color: #960050; background-color: #1e0010">id</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #960050; background-color: #1e0010">}</span>
+</pre>
+            </div>
+
+            <br>
+
+
+
+            <p>Pull all stories</p>
+
+            <!-- HTML generated using hilite.me -->
+            <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                <pre style="margin: 0; line-height: 125%"><span style="color: #960050; background-color: #1e0010">query</span> <span style="color: #960050; background-color: #1e0010">allDeAnzaStories</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #960050; background-color: #1e0010">deanzastories</span> <span style="color: #960050; background-color: #1e0010">{</span>
+    <span style="color: #960050; background-color: #1e0010">header</span>
+    <span style="color: #960050; background-color: #1e0010">content</span>
+    <span style="color: #960050; background-color: #1e0010">id</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #960050; background-color: #1e0010">}</span>
+</pre>
+            </div>
+
+
+            <br>
+            <p>Get story count</p>
+            <!-- HTML generated using hilite.me -->
+            <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                <pre style="margin: 0; line-height: 125%"><span style="color: #960050; background-color: #1e0010">query</span> <span style="color: #960050; background-color: #1e0010">getStoryCount(school:</span><span style="color: #e6db74">&quot;deanza&quot;</span><span style="color: #960050; background-color: #1e0010">)</span>
+<span style="color: #f8f8f2">{</span>
+  <span style="color: #960050; background-color: #1e0010">count</span> 
+  <span style="color: #960050; background-color: #1e0010">lastupdated</span>
+<span style="color: #f8f8f2">}</span>
+                              
+</pre>
+            </div>
+
+            <br>
+
+        </div>
+
+
+        <div class="rest">
+            <h5 class="link">
+                REST API (Deprecated)
+                <a target="__blank" href="/old/rest/count/deanza"> Link</a>
+            </h5>
+
+
+        <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #75715e"># You will put deanza or foothill in place of ${school}</span>
+/old/rest/<span style="color: #66d9ef">${</span><span style="color: #f8f8f2">school</span><span style="color: #66d9ef">}</span>
+</pre></div>
+
+<br>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #75715e"># Returns limited amount of stories </span>
+    /old/rest/<span style="color: #66d9ef">${</span><span style="color: #f8f8f2">school</span><span style="color: #66d9ef">}</span>/<span style="color: #66d9ef">${</span><span style="color: #f8f8f2">number</span><span style="color: #66d9ef">}</span>
+</pre></div>
+
+<br>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #75715e"># returns number of stories</span>
+    /old/rest/count/<span style="color: #66d9ef">${</span><span style="color: #f8f8f2">school</span><span style="color: #66d9ef">}</span>
+</pre></div>
+
+<br>
+
+
+
+            <p>If you want access to the REST API documentation you need to
+                email <a href="mailto:soradev4@gmail.com">Carlos Alba</a> or <a target="__blank" href="http://www.carlosalba.us/">carlosalba.us</a>
+            </p>
+        </div>
+
+        <br>
+        <div class="row">
+            <img class="one-half column" style="height:auto;width:200px" src="https://i.ibb.co/bBH0ZVZ/foothillsquare.png"
+                alt="foothillsquare" border="0">
+
+            <img style="height:auto;width:200px" class="one-half column" src="https://i.ibb.co/stYtqcT/deanza.png" alt="deanza"
+                border="0">
+        </div>
+
+        <br>
+    </div>
+
+</body>
+
+</html>

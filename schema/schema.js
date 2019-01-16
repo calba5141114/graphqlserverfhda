@@ -1,7 +1,5 @@
 const graphql = require('graphql');
 const _ = require('lodash');
-// const Book = require('../models/book.js');
-// const Author = require('../models/author.js');
 const DeAnzaStory = require('../models/deanzastory.js');
 const FoothillStory = require('../models/foothillstory.js');
 
@@ -52,6 +50,17 @@ const FoothillStoryType = new GraphQLObjectType({
     })
 });
 
+const InformationType = new GraphQLObjectType({
+    name: "InformationType",
+    fields: () => ({
+        count: {
+            type: GraphQLInt
+        },
+        lastupdated: {
+            type: GraphQLString
+        }
+    })
+});
 
 
 
@@ -92,14 +101,14 @@ const RootQuery = new GraphQLObjectType({
                 return DeAnzaStory.find({});
             }
         },
-        deanzastorieslimit:{    
+        deanzastorieslimit: {
             type: new GraphQLList(DeAnzaStoryType),
             args: {
-                first:{
+                first: {
                     type: GraphQLInt
                 }
             },
-            resolve(parent, args){
+            resolve(parent, args) {
                 return DeAnzaStory.find({}).limit(args.first)
             }
         },
@@ -113,9 +122,34 @@ const RootQuery = new GraphQLObjectType({
             resolve(parent, args) {
                 return FoothillStory.find({}).limit(args.first)
             }
+        },
+        getStoryCount: {
+            type: InformationType,
+            args: {
+                school: {
+                    type: GraphQLString
+                }
+            },
+            resolve(parent, args) {
+                /**
+                 * Gets information from Deanza and Foothill
+                 */
+                if (args.school === "deanza") {
+                    return {
+                        count: DeAnzaStory.estimatedDocumentCount(),
+                        lastupdated: Date(Date.now())
+                    }
+                } else if (args.school === "foothill") {
+                    return {
+                        count: FoothillStory.estimatedDocumentCount(),
+                        lastupdated: Date(Date.now())
+                    }
+                }
+            }
         }
     }
 });
+
 
 
 module.exports = new GraphQLSchema({
